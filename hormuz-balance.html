@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How the Hormuz Shock Actually Balances</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    color-scheme: dark;
+    --bg: #0d1117; --panel: #151b23; --panel2: #1b2330;
+    --ink: #e9e4d8; --dim: #94a0ac; --line: #2a3340;
+    --gulf: #b23a26; --bypass: #3f7d6e; --nonopec: #5fa088;
+    --cn-run: #cf8a3c; --row-run: #e0b074;
+    --us-spr: #d9b24a; --eu-spr: #c79a3a; --oecd-c: #b5832c;
+    --china-inv: #8a6d4f; --other: #6e5840; --onwater: #4a5a6a;
+    --mandated: #7e63b0; --price-c: #6b8fb5; --petro: #4f9d8a; --suppr: #9aa3ad;
+    --net: #b23a26; --brent-c: #f0d04a; --runway-c: #e0884a;
+    --cn-ob: #5fa088; --cn-rc: #cf8a3c; --cn-st: #b23a26; --cn-rs: #6e7f8f;
+  }
+  body { background: var(--bg) !important; color: var(--ink) !important; font-family: 'IBM Plex Sans', sans-serif; overflow-x: hidden; font-size: 16px; -webkit-text-size-adjust: 100%; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 18px; }
+  /* MASTHEAD */
+  .masthead { border-bottom: 1px solid var(--line); padding: 22px 18px; }
+  .masthead-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .masthead-tag { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 2px; color: var(--gulf); text-transform: uppercase; }
+  .masthead-date { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--dim); }
+  h1 { font-family: 'Newsreader', serif; font-weight: 600; font-size: clamp(26px, 7vw, 36px); line-height: 1.12; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .masthead-sub { font-family: 'Newsreader', serif; font-size: clamp(15px, 4vw, 17px); color: var(--dim); font-style: italic; max-width: 730px; line-height: 1.45; }
+  /* KPI GRID */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 16px 0; }
+  .kpi { background: var(--panel); padding: 13px 14px; min-width: 0; }
+  .kpi-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--dim); margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .kpi-val { font-family: 'IBM Plex Mono', monospace; font-size: clamp(22px, 5.5vw, 30px); font-weight: 700; line-height: 1; color: var(--ink); }
+  .kpi-val.hot { color: var(--runway-c); }
+  .kpi-unit { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--dim); margin-left: 4px; }
+  .kpi-sub { font-size: 10.5px; color: var(--dim); margin-top: 6px; line-height: 1.3; }
+  /* PANELS */
+  .panel-section { padding: 28px 18px 0; }
+  .panel-tag { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 2px; color: var(--gulf); text-transform: uppercase; margin-bottom: 5px; }
+  h2 { font-family: 'Newsreader', serif; font-weight: 500; font-size: clamp(20px, 5.5vw, 24px); margin-bottom: 10px; }
+  .panel-intro { color: var(--dim); font-size: 13px; line-height: 1.55; margin-bottom: 14px; }
+  .panel-intro b { color: var(--ink); }
+  .panel-card { background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 16px 12px 12px; }
+  .panel-footnote { font-size: 10.5px; color: var(--dim); font-style: italic; margin-top: 8px; line-height: 1.5; }
+  /* CONTROLS */
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .btn-group { display: flex; border: 1px solid var(--line); border-radius: 2px; overflow: hidden; }
+  .btn { background: transparent; color: var(--dim); border: none; padding: 7px 12px; font-size: 12px; cursor: pointer; font-family: 'IBM Plex Mono', monospace; min-width: 40px; transition: background 0.15s; }
+  .btn.active { background: var(--gulf); color: #fff; }
+  /* LEGEND */
+  .legend { display: flex; gap: 12px; flex-wrap: wrap; padding-top: 12px; margin-top: 8px; border-top: 1px solid var(--line); justify-content: center; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--dim); }
+  .chip-dot { width: 11px; height: 11px; border-radius: 2px; flex-shrink: 0; }
+  .chip-dash { width: 14px; height: 0; border-top: 2px dashed; flex-shrink: 0; }
+  /* TOOLTIP */
+  .tooltip-overlay { position: fixed; inset: 0; z-index: 40; }
+  .tooltip { position: absolute; z-index: 50; top: 8px; left: 8px; right: 8px;
+    background: var(--panel2); border: 1px solid var(--line); border-radius: 3px;
+    padding: 12px 14px; font-size: 12.5px; line-height: 1.5; color: var(--dim);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+  .tooltip-title { color: var(--ink); font-weight: 700; margin-bottom: 7px; font-family: 'IBM Plex Sans', sans-serif; display: flex; justify-content: space-between; align-items: center; }
+  .tooltip-close { color: var(--dim); font-size: 18px; cursor: pointer; padding: 0 4px; line-height: 1; background: none; border: none; }
+  .tooltip-row { display: flex; justify-content: space-between; align-items: center; margin: 2px 0; }
+  .tooltip-row-swatch { width: 9px; height: 9px; border-radius: 1px; flex-shrink: 0; margin-right: 6px; }
+  .tooltip-total { display: flex; justify-content: space-between; margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--line); font-weight: 700; color: var(--ink); }
+  .tooltip-note { margin-top: 8px; font-style: italic; font-size: 11.5px; }
+  .tooltip-val { font-family: 'IBM Plex Mono', monospace; color: var(--ink); margin-left: 10px; }
+  /* SVG */
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .svg-wrap { position: relative; }
+  /* SOHAT */
+  .so-what { background: var(--panel2); border-left: 3px solid var(--net); padding: 16px; border-radius: 2px; }
+  .so-what-tag { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--net); margin-bottom: 8px; }
+  .so-what p { font-size: 13px; color: var(--ink); line-height: 1.6; }
+  /* SOURCES */
+  .sources { padding: 24px 18px 40px; }
+  .sources-tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dim); margin-bottom: 8px; }
+  .sources p { font-size: 11px; color: var(--dim); line-height: 1.6; }
+  /* PROJECTION MARKER on SVG */
+  .proj-label { font-family: 'IBM Plex Sans', sans-serif; font-style: italic; fill: var(--dim); font-size: 9px; }
+
+  /* -- MOBILE RESPONSIVE -- */
+  @media (max-width: 600px) {
+    h1 { font-size: 30px !important; line-height: 1.15 !important; }
+    .masthead-sub { font-size: 16px !important; }
+    .masthead { padding: 16px 14px !important; }
+    .wrap { padding: 0 !important; }
+    .narrative-box { padding: 16px !important; }
+    body { font-size: 16px !important; }
+    .narrative-grid { grid-template-columns: 1fr !important; }
+    .narrative-grid p { font-size: 15px !important; line-height: 1.65 !important; }
+    .narrative-grid .mob-label-hint, .narrative-numbers { font-size: 11px !important; }
+    .narrative-box { border-right: none !important; border-bottom: 1px solid var(--line) !important; }
+    .panel-section { padding: 20px 14px 0 !important; }
+    .panel-intro { font-size: 15px !important; line-height: 1.6 !important; }
+    .panel-tag { font-size: 10px !important; }
+    h2 { font-size: 20px !important; }
+    .panel-card { padding: 10px 8px 10px !important; }
+    .legend { gap: 8px !important; font-size: 10px !important; }
+    .chip { font-size: 10px !important; }
+    .chart-scroll-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: 3px; }
+    .chart-scroll-inner { min-width: 880px; }
+    .scroll-hint { display: block !important; }
+    .panel-collapse-toggle { display: flex !important; margin-bottom: 6px !important; }
+    .panel-tag { display: none !important; }
+    .panel-section { padding-bottom: 0 !important; }
+    .panel-card-wrap { }
+    .sources { padding: 20px 14px 32px !important; }
+    .sources p { font-size: 12px !important; }
+    .so-what p { font-size: 15px !important; line-height: 1.65 !important; }
+    .tooltip { font-size: 13px !important; left: 4px !important; right: 4px !important; }
+    .controls { gap: 6px !important; }
+    .btn { padding: 6px 8px !important; font-size: 11px !important; min-width: 32px !important; }
+    .critique-section { display: none; }
+    .critique-section.open { display: block; }
+    .critique-toggle { display: flex !important; }
+    .narrative-numbers { font-size: 10.5px !important; }
+  }
+  .scroll-hint { display: none; font-size: 11px; color: var(--dim); font-style: italic;
+    font-family: 'IBM Plex Sans', sans-serif; text-align: right; margin-top: 4px; padding-right: 4px; }
+
+
+
+  /* -- MOBILE ACCORDION via div+onclick -- */
+  .mob-panel { display: block; }
+  .mob-label { display: none; cursor: pointer; }
+  /* Desktop: always show content */
+  @media (min-width: 601px) {
+    .mob-body, .mob-critique-body { display: block !important; }
+  }
+
+  @media (max-width: 600px) {
+    .mob-panel { margin: 14px 0 2px; }
+    .mob-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gulf);
+      border-radius: 3px;
+      padding: 14px 16px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .mob-label:active { background: var(--panel2); }
+    .mob-label-inner { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .mob-label-tag  { font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+      letter-spacing: 1.5px; text-transform: uppercase; color: var(--gulf); }
+    .mob-label-title { font-family: 'IBM Plex Sans', sans-serif; font-size: 15px;
+      color: var(--ink); font-weight: 500; }
+    .mob-label-hint { font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+      color: var(--dim); letter-spacing: 0.5px; margin-top: 2px; }
+    .mob-arrow { font-size: 14px; color: var(--dim); flex-shrink: 0;
+      margin-left: 12px; display: inline-block; }
+    .critique-label { border-left-color: var(--net) !important; }
+    .mob-label-tag.critique-tag { color: var(--net); }
+  }
+
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-meta">
+    <span class="masthead-tag">Energy Markets &middot; Crude Balance</span>
+    <span class="masthead-date">As of mid-May 2026 &middot; actuals Mar-May, projections Jun-Aug (strait closed)</span>
+  </div>
+  <h1>Why Crude Isn't $200</h1>
+  <p class="masthead-sub">~14 Mbd of Gulf exports stopped flowing. After bypass routes and new non-OPEC supply, the net loss hitting refiners is 8.5 Mbd - roughly 8% of global demand. Price should be catastrophic. It isn't. Three things explain the gap. All three are temporary or conditional.</p>
+</div>
+
+<!-- NARRATIVE STRIP -->
+<div style="background:var(--panel2);border-bottom:1px solid var(--line)">
+  <div class="narrative-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0">
+
+    <div class="narrative-box" style="padding:18px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:10px">1. Why price hasn't spiked</div>
+      <p style="font-size:12.5px;color:var(--ink);line-height:1.6;margin:0 0 12px">Most demand was eliminated by state order, not by price. China cut refinery runs by decree. Governments mandated WFH and fuel rationing. Petrochemical plants lost feedstock and shut down. None of this required a high price to happen - which is why Brent is at $105 rather than $200+.</p>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:2.1;border-left:2px solid var(--line);padding-left:12px">
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--dim)">Gulf exports lost (May)</span><b style="color:var(--gulf)">14.0 Mbd</b></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--dim)">Bypass + non-OPEC adds</span><b style="color:var(--bypass)">&minus; 5.5 Mbd</b></div>
+        <div style="display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:3px"><span style="color:var(--ink)"><b>Net crude loss</b></span><b style="color:var(--gulf)">= 8.5 Mbd</b></div>
+        <div style="height:4px"></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--dim)">State-directed demand cut</span><b style="color:var(--cn-run)">&minus; 5.1 Mbd</b></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--dim)">Inventory draws</span><b style="color:var(--us-spr)">&minus; 3.4 Mbd</b></div>
+        <div style="display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:3px"><span style="color:var(--ink)"><b>Residual (balanced)</b></span><b style="color:var(--gulf)">&asymp; 0 Mbd</b></div>
+      </div>
+    </div>
+
+    <div class="narrative-box" style="padding:18px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:10px">2. Market is pricing in a deal</div>
+      <p style="font-size:12.5px;color:var(--ink);line-height:1.6;margin:0">Brent at ~$105 is below what the physical balance requires if the strait stays closed indefinitely. Traders expect a deal to arrive before inventories hit a critical floor - that expectation compresses the price. If talks fail, price adjusts fast: the no-deal path reaches $130-163 by Aug, given how little price-elasticity oil demand has in the short run.</p>
+    </div>
+
+    <div class="narrative-box" style="padding:18px 20px;border-bottom:1px solid var(--line)">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:10px">3. Why this changes over time</div>
+      <p style="font-size:12.5px;color:var(--ink);line-height:1.6;margin:0 0 10px">Three things are holding price down. All are temporary or conditional:</p>
+      <div style="font-size:12px;color:var(--ink);line-height:1.7">
+        <div style="margin-bottom:6px"><b>Inventory draws</b> (~3.4 Mbd): ~550 Mb of emergency-accessible stock left. At this pace, roughly 5 months. When it runs out, there is no substitute - price must rise to destroy demand instead. <i>See Panel 4.</i></div>
+        <div style="margin-bottom:6px"><b>State-directed demand cuts</b> (~5.1 Mbd): sustainable 6-9 months. China's commercial stocks deplete. Developing-Asia subsidy budgets exhaust. As these unwind, the burden shifts to price-driven rationing. <i>See Panels 2-3.</i></div>
+        <div><b>The deal bet</b>: if talks fail, the market's discount to the no-deal fundamental collapses - rapidly. <i>See Panel 3 price paths.</i></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PANEL 1: WATERFALL -->
+<div class="mob-panel mob-open" id="p1-panel">
+<div class="mob-label" onclick="mobToggle('p1-panel')">
+  <span class="mob-label-inner">
+    <span class="mob-label-tag">01 &middot; The Balance, One Month</span>
+    <span class="mob-label-title">Gross shock to a balanced book</span>
+    <span class="mob-label-hint" id="p1-hint">tap to collapse</span>
+  </span>
+  <span class="mob-arrow" id="p1-arrow">&#9660;</span>
+</div>
+<div class="mob-body" id="p1-body">
+
+<div class="panel-section">
+  <div class="panel-tag">01 &middot; The Balance, One Month</div>
+  <h2>Gross shock to a balanced book</h2>
+  <div class="controls">
+    <div class="btn-group" id="month-btns">
+      <button class="btn" data-mi="0">Mar</button>
+      <button class="btn" data-mi="1">Apr</button>
+      <button class="btn active" data-mi="2">May</button>
+      <button class="btn" data-mi="3">Jun*</button>
+      <button class="btn" data-mi="4">Jul*</button>
+      <button class="btn" data-mi="5">Aug*</button>
+    </div>
+    <div class="btn-group" id="denom-btns">
+      <button class="btn active" data-d="demand">% demand</button>
+      <button class="btn" data-d="sea">% seaborne</button>
+    </div>
+  </div>
+  <p class="panel-intro">Tap any bar to see the components, which sum to its total. The refinery and inventory bars are split into parts; <b style="color:var(--cn-run)">China's run-cuts</b> are broken out so this ties to Panel 2. Months marked * assume the strait stays closed.</p>
+  <div class="panel-card svg-wrap">
+    <div class="chart-scroll-wrap"><div class="chart-scroll-inner"><svg id="waterfall-svg" viewBox="0 0 880 510"></svg></div></div>
+    <div class="scroll-hint">&#8592; scroll to explore &nbsp;&#8594;</div>
+    <div id="waterfall-readout" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--dim);margin-top:6px;text-align:center"></div>
+    <div id="waterfall-tip" class="tooltip" style="display:none"></div>
+  </div>
+  <div class="legend">
+    <span class="chip"><span class="chip-dot" style="background:var(--gulf)"></span>Supply shock</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--bypass)"></span>Bypass</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--nonopec)"></span>Non-OPEC adds</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--cn-run)"></span>China run-cuts</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--row-run)"></span>RoW run-cuts</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--us-spr)"></span>SPR/inventory</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--onwater)"></span>Oil-on-water (drag)</span>
+  </div>
+</div>
+</div>
+</div>
+<!-- PANEL 2: CHINA -->
+<div class="mob-panel" id="p2-panel">
+<div class="mob-label" onclick="mobToggle('p2-panel')">
+  <span class="mob-label-inner">
+    <span class="mob-label-tag">02 &middot; The China Lever</span>
+    <span class="mob-label-title">What China's import collapse is actually made of</span>
+    <span class="mob-label-hint" id="p2-hint">tap to expand</span>
+  </span>
+  <span class="mob-arrow" id="p2-arrow">&#9660;</span>
+</div>
+<div class="mob-body" id="p2-body">
+
+<div class="panel-section">
+  <div class="panel-tag">02 &middot; The China Lever</div>
+  <h2>What China's import collapse is actually made of</h2>
+  <p class="panel-intro">China cut crude imports ~6 Mbd vs the pre-crisis peak - the single largest demand-side move in the market. Only two pieces are directly observable: <b style="color:var(--cn-rc)">refinery run-cuts</b> (~20% state-directed, same slice in Panel 1) and <b style="color:var(--cn-st)">commercial stock draws</b> (from the implied balance). The <b style="color:var(--cn-rs)">residual</b> is not directly observable - shown as interpretation.
+  <br><br><b style="color:var(--ink)">How long can China sustain this?</b> Probably 6-9 months before hitting hard limits. Commercial stocks (~1 bn bbl, separate from the ~360 Mb government SPR) support ~1.5 Mbd of draws for roughly 20 months. State-directed run cuts are economically painful but politically manageable for several months. Beijing has so far refused to draw the SPR - preserving it as genuine emergency cover. The pressure point comes when commercial stocks approach a ~30-day operating minimum: then the choice is draw the SPR (a significant policy signal) or accept domestic fuel shortages.
+  <br><br>China's suppression is also actively capping global prices. If Beijing normalized imports even partially - say, back toward 9 Mbd from 6.6 - OECD draws would accelerate and Brent would spike sharply. That leverage works in both directions and is now a permanent market variable.</p>
+  <div class="panel-card svg-wrap">
+    <div class="chart-scroll-wrap"><div class="chart-scroll-inner"><svg id="china-svg" viewBox="0 0 880 360"></svg></div></div>
+    <div class="scroll-hint">&#8592; scroll to explore &nbsp;&#8594;</div>
+    <div id="china-tip" class="tooltip" style="display:none"></div>
+  </div>
+  <div class="legend">
+    <span class="chip"><span class="chip-dot" style="background:var(--cn-rc)"></span>Refinery run-cuts (observable)</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--cn-st)"></span>Stock draws (observable)</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--cn-rs)"></span>Residual (interpretation)</span>
+  </div>
+  <p class="panel-footnote">The three-way split is structured inference; published data gives the aggregate ~1 Mbd surplus / ~4+ Mbd deficit breakdown but not a clean monthly sub-decomposition.</p>
+</div>
+</div>
+</div>
+<!-- PANEL 3: DEMAND + PRICE -->
+<div class="mob-panel" id="p3-panel">
+<div class="mob-label" onclick="mobToggle('p3-panel')">
+  <span class="mob-label-inner">
+    <span class="mob-label-tag">03 &middot; Demand Destruction &amp; Price</span>
+    <span class="mob-label-title">Rationing by decree, then by price</span>
+    <span class="mob-label-hint" id="p3-hint">tap to expand</span>
+  </span>
+  <span class="mob-arrow" id="p3-arrow">&#9660;</span>
+</div>
+<div class="mob-body" id="p3-body">
+
+<div class="panel-section">
+  <div class="panel-tag">03 &middot; Demand Destruction &amp; Price</div>
+  <h2>Rationing by decree, then by price</h2>
+  <p class="panel-intro">Three distinct mechanisms destroy demand, each working differently. <b style="color:var(--petro)">Petrochemical</b> feedstock cuts are structural and immediate - Gulf naphtha and LPG stopped arriving at the industrial plants (steam crackers) that break those feedstocks into plastics and fertilizer inputs. The plants cut production. <b style="color:var(--mandated)">Mandated rationing</b> is policy fiat: WFH orders, license-plate systems, government vehicle limits - price-insensitive, deployed first. <b style="color:var(--price-c)">Price-driven</b> destruction comes last and does the heavy lifting as the others saturate - it rises as Brent climbs.
+  <br><br>The <b style="color:var(--suppr)">dashed suppression line</b> is demand that should have been destroyed but was not: retail price caps (South Korea, Thailand, Philippines, Slovenia) and direct subsidies (Philippines, Thailand, Malaysia, Egypt, Sri Lanka) shield consumers from the price signal. These apply primarily to retail fuel buyers and transport operators in import-dependent Asian economies. The deferred destruction accumulates as fiscal cost and surfaces when subsidies are removed.
+  <br><br>Price rises not because the total gap is growing, but because price's <i>share</i> of closing it grows as stock draws and mandated rationing exhaust.
+  <br><br><b style="color:var(--ink)">Reading the two Brent paths.</b> The <b style="color:var(--brent-c)">gold line</b> is roughly where the market trades today. Brent at ~$105 is <i>below</i> what the fundamental clearing price would be if the strait stayed closed indefinitely - because traders are betting a deal arrives before inventories hit a critical floor. That bet compresses the price. The <b style="color:#e05050">dashed red line</b> shows what happens if they're wrong: no deal, risk premium rises, state-directed relief exhausts, and price climbs to ration demand the hard way. The gap between the two lines is not a model range - it is the market's implicit judgment on deal timing.
+  <br><br><b style="color:var(--ink)">Elasticity.</b> Formula: P = $70 x (1 + price-rationed volume / 104 Mbd / |eps|) + war-risk premium. The empirically observed eps for the price-driven slice is -0.02 (IEA 1.5 Mbd 2Q cut at $120 avg vs $70 pre-war = (1.5/104)/0.71). But using -0.02 forward produces $200+ no-deal prices, which is implausible if China's state-directed suppression holds. This model uses eps = -0.05 as a structural assumption - higher elasticity as state relief exhausts and adaptation grows - calibrated so the no-deal path lands near Goldman/JPM's $130-175 published range for a sustained closure. The risk premium (the gap between fundamental and market price) is calibrated exactly to observed Mar-May prices. Eps = -0.02, empirically derived from this crisis (see Price Model tab). Two paths: base assumes a deal is struck (risk premium fades, price $125-169); closed assumes no deal (risk premium rises, price $145-224).</p>
+  <div class="panel-card svg-wrap">
+    <div class="chart-scroll-wrap"><div class="chart-scroll-inner"><svg id="demand-svg" viewBox="0 0 880 520"></svg></div></div>
+    <div class="scroll-hint">&#8592; scroll to explore &nbsp;&#8594;</div>
+    <div id="demand-tip" class="tooltip" style="display:none"></div>
+  </div>
+  <div class="legend">
+    <span class="chip"><span class="chip-dot" style="background:var(--petro)"></span>Petrochemical</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--mandated)"></span>Mandated rationing</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--price-c)"></span>Price-driven</span>
+    <span class="chip"><span class="chip-dash" style="border-color:var(--suppr)"></span>Subsidy suppression (-)</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--brent-c)"></span>Brent: market (deal expected)</span><span class="chip"><span class="chip-dash" style="border-color:#e05050"></span>Brent: no deal (closed)</span>
+  </div>
+</div>
+</div>
+</div>
+<!-- PANEL 4: RUNWAY -->
+<div class="mob-panel" id="p4-panel">
+<div class="mob-label" onclick="mobToggle('p4-panel')">
+  <span class="mob-label-inner">
+    <span class="mob-label-tag">04 &middot; The Runway</span>
+    <span class="mob-label-title">How long the buffer lasts</span>
+    <span class="mob-label-hint" id="p4-hint">tap to expand</span>
+  </span>
+  <span class="mob-arrow" id="p4-arrow">&#9660;</span>
+</div>
+<div class="mob-body" id="p4-body">
+
+<div class="panel-section">
+  <div class="panel-tag">04 &middot; The Runway</div>
+  <h2>How long the buffer lasts</h2>
+  <p class="panel-intro">Excluding stranded oil-on-water, the emergency-accessible buffer falls from ~890 Mb to roughly <b style="color:var(--runway-c)">550 Mb in May - about 5.3 months at the current draw rate</b>, and toward ~155 Mb (1.5 months) by August if the closure holds. OECD commercial stocks (the largest pool) deplete first. Bars = drawable stock by source; line = months of runway at the May pace.</p>
+  <div class="panel-card svg-wrap">
+    <div class="chart-scroll-wrap"><div class="chart-scroll-inner"><svg id="runway-svg" viewBox="0 0 880 340"></svg></div></div>
+    <div class="scroll-hint">&#8592; scroll to explore &nbsp;&#8594;</div>
+    <div id="runway-tip" class="tooltip" style="display:none"></div>
+  </div>
+  <div class="legend">
+    <span class="chip"><span class="chip-dot" style="background:var(--oecd-c)"></span>OECD commercial</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--us-spr)"></span>US SPR</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--eu-spr)"></span>Europe SPR/products</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--china-inv)"></span>China (visible)</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--other)"></span>Other non-OECD</span>
+    <span class="chip"><span class="chip-dot" style="background:var(--runway-c)"></span>Months of cover</span>
+  </div>
+  <p class="panel-footnote">"Drawable" = emergency-accessible stock above safe minimum operating levels. Estimates vary widely; runway shown at constant May draw rate (3.4 Mbd) for transparency.</p>
+</div>
+</div>
+</div>
+<!-- SO WHAT -->
+<div class="panel-section" style="padding-bottom:0">
+  <div class="so-what">
+    <div class="so-what-tag">The "so what"</div>
+    <p>If the strait stays closed, three things happen in sequence. First, OECD commercial stocks and the SPR absorb the deficit - but at the current draw rate (~3.4 Mbd) that buffer is roughly 5 months from May. Second, as stocks thin, the balancing burden shifts to price: demand must fall further, and oil's low elasticity means Brent reaches ~$130-163 in the no-deal path (within Goldman/JPM published sustained-closure scenarios). The market currently trades ~$105 because traders expect a deal before inventories hit a critical floor - that expectation is what separates the two price paths. If talks fail and China's state-directed suppression holds, $130-160 is the range. If China suppression also breaks down, higher. Third, every barrel drawn now requires roughly an additional 1 Mbd of supply for 3 years to refill - so reopening does not end the price pressure immediately.
+    <br><br>China has been the single largest factor keeping prices below $120: its import collapse freed barrels for the rest of the world. But part of that collapse was stopping a year-long stockpiling program that had itself inflated global demand. Beijing demonstrated it can swing its import slate by ~6 Mbd through direct intervention - in either direction. That is a permanent new market variable.</p>
+  </div>
+</div>
+
+<!-- SOURCES -->
+
+<!-- CRITIQUE -->
+<div class="mob-panel" id="critique-panel">
+<div class="mob-label critique-label" onclick="mobToggle('critique-panel')">
+  <span class="mob-label-inner">
+    <span class="mob-label-tag critique-tag">Model critique</span>
+    <span class="mob-label-title">Where models went wrong &mdash; and where this one probably is too</span>
+    <span class="mob-label-hint" id="critique-hint">tap to expand</span>
+  </span>
+  <span class="mob-arrow" id="critique-arrow">&#9660;</span>
+</div>
+<div class="mob-critique-body" id="critique-body">
+<div class="panel-section" style="padding-bottom:0">
+<div class="critique-section-inner" style="background:var(--panel2);border:1px solid var(--line);border-radius:3px;padding:18px 18px 16px;margin-bottom:0">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#e05050;text-transform:uppercase;margin-bottom:10px">Where previous models were wrong - and where this one probably is too</div>
+
+    <p style="font-size:12.5px;color:var(--dim);line-height:1.6;margin-bottom:10px">Every model published in March-April 2026 predicted Brent above $150 by now. Prices peaked near $144 and have traded $97-110 since. That is not a small miss. Here is what went wrong:</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:14px">
+
+      <div style="background:var(--panel);padding:12px 14px;border-radius:2px;border-top:2px solid #e05050">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#e05050;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">1. Demand flexibility was underestimated</div>
+        <p style="font-size:12px;color:var(--dim);line-height:1.55;margin:0">Models used historical short-run price elasticity (~-0.04). But most of the demand destruction was not price-driven - it was state-directed (China run cuts ordered by Beijing) and structural (petrochemical feedstock physically absent). Neither mechanism appears in historical elasticity data. The empirically observed elasticity for the price-driven slice in this crisis is -0.020, but using that as the forward assumption produces implausible $200+ no-deal prices. The right model uses a structural eps of -0.05 (mid-range between the acute-crisis reading and longer-run adaptation) applied only to the price-rationed demand slice, with a separately calibrated risk premium. This produces a no-deal path of $130-163 - within Goldman/JPM published sustained-closure scenarios and more defensible than either extreme.</p>
+      </div>
+
+      <div style="background:var(--panel);padding:12px 14px;border-radius:2px;border-top:2px solid #e05050">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#e05050;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">2. China was modeled as passive</div>
+        <p style="font-size:12px;color:var(--dim);line-height:1.55;margin:0">Early models treated China as a price-responsive importer that would slowly reduce consumption. Instead Beijing cut imports by ~6 Mbd in weeks through direct state intervention - a move with no historical precedent at this scale. This single action freed more barrels for the rest of the world than the entire IEA SPR release. No model predicted it; most still don't fully account for China's capacity to move the global balance in either direction at will.</p>
+      </div>
+
+      <div style="background:var(--panel);padding:12px 14px;border-radius:2px;border-top:2px solid #e05050">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#e05050;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">3. The risk premium is news, not fundamentals</div>
+        <p style="font-size:12px;color:var(--dim);line-height:1.55;margin:0">Brent fell from $144 to below $100 in the same month - not because the physical balance changed, but because of ceasefire rumors and Trump posts. The geopolitical risk premium is not a stable number: it oscillates with news flow and reprices in hours. All models treat it as a calibrated add-on. None can predict it. This model's forward risk premium is an assumption, not a forecast, and should be read accordingly.</p>
+      </div>
+
+      <div style="background:var(--panel);padding:12px 14px;border-radius:2px;border-top:2px solid #e05050">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#e05050;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">4. Recession feedback was ignored</div>
+        <p style="font-size:12px;color:var(--dim);line-height:1.55;margin:0">High oil prices slow GDP. Slower GDP reduces oil demand. Lower demand brings prices down. This feedback loop means the effective demand elasticity rises as prices rise - exactly the opposite of what static models assume. Most forecasts used pre-war GDP baselines. The actual demand contraction (~1.3 Mbd, IEA) is partly price-rationing but also partly GDP destruction from the war itself - trade disruption, capital flight, factory slowdowns - none of which is in the elasticity parameter.</p>
+      </div>
+
+    </div>
+
+    <div style="border-top:1px solid var(--line);padding-top:12px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">What this model is probably still getting wrong</div>
+      <p style="font-size:12px;color:var(--ink);line-height:1.6;margin:0">The forward closed-case price path ($109-142) is likely still too high for the same reasons - it applies elasticity to a residual that state-directed and recession-driven demand flexibility will probably absorb faster than modeled. The inventory draw rate (~3.4 Mbd) is likely already slowing as China's run cuts deepen. The dual-path structure (base vs. closed) captures deal uncertainty but not the intra-week volatility that dominates actual price discovery. Most importantly: this model has no mechanism for the largest single variable - whether and when a deal is struck. That is a geopolitical judgment, not a quantitative one, and it will determine whether prices end 2026 at $90 or $140 more than any supply-demand calculation.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="sources">
+  <div class="sources-tag">Sources & method</div>
+
+  <p style="margin-bottom:10px"><b style="color:var(--ink)">Supply balance.</b> Crude-basis, no double-counting. Identity: net crude supply loss = refinery throughput cut (crude demand destroyed) + inventory draw (residual). Actuals (Mar-May) tie to IEA Oil Market Report (May 13, 2026) April stock decomposition: OECD on-land -4.9 Mbd, non-OECD visible -0.8, oil-on-water +1.8 (a build), netting to -3.9 observed; cumulative Mar-Apr draw ~246 Mb (IEA: -250 Mb). Refinery cut (~5 Mbd, IEA) split China vs. rest-of-world via Kpler run data. Saudi/UAE spare capacity (~4-5 Mbd) excluded as undeliverable while the strait is closed.</p>
+
+  <p style="margin-bottom:10px"><b style="color:var(--ink)">Projections (Jun-Aug).</b> Assume the strait STAYS CLOSED - the neutral baseline. The IEA's own published forecast (OMR May 2026) instead assumes gradual reopening from 3Q26, which would shrink the deficit faster. Pentagon internal assessment: worst-case closure 6+ months.</p>
+
+  <p style="margin-bottom:10px"><b style="color:var(--ink)">China decomposition.</b> Import collapse split into: (1) refinery run-cuts - observable via run data; (2) commercial stock draws - observable via implied supply-demand balance; (3) residual - imports fell more than (1)+(2) explain, shown as interpretation. "Over-buying" is inferred from the balance, not directly measured. Monthly sub-split is structured inference consistent with published aggregates (~1 Mbd surplus barrels set aside; ~4+ Mbd deficit met via runs/inventories/consumption).</p>
+
+  <p style="margin-bottom:10px"><b style="color:var(--ink)">Price model.</b> Brent is derived in two components, not assumed:
+    <br><br>
+    <b style="color:var(--ink)">Fundamental clearing price:</b> uses the constant short-run price elasticity of demand formula. If the market requires Q Mbd of price-driven demand rationing to clear the residual gap (after refinery cuts, mandated rationing, and stock draws absorb the rest), then the required price is:
+    <br><br>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink);display:block;padding:6px 12px;background:var(--panel2);border-left:2px solid var(--brent-c);margin:6px 0">P_fund = P0 x (1 + (Q / D) / |eps|)</span>
+    <br>
+    where P0 = $70 (pre-crisis Brent baseline), D = 104 Mbd (global demand), eps = -0.05 (structural mid-range). Empirically observed acute-crisis eps = -0.02 (IEA 1.5 Mbd 2Q cut / 71% price rise), but this understates forward elasticity as state-directed cuts exhaust and price adaptation grows. -0.05 is the compromise. Risk premium calibrated to observed actuals ($18/$42/$23 for Mar/Apr/May); forward: base ~$15-20 (deal expected), no-deal ~$40-55 (war risk persists). Because eps is small, even a modest uncleared residual requires a large price rise - this is why Brent rose sharply on a relatively small physical gap.
+    <br><br>
+    <b style="color:var(--ink)">Geopolitical risk premium:</b> Added on top of the fundamental; calibrated to match observed Brent in Mar-May (modeled fundamental $75-85 vs. observed $85-120, implying a $10-35/bbl risk premium from the war/closure itself). Forward risk premium held at ~$22-40/bbl in the closed-case path.
+    <br><br>
+    Price sensitivity: at eps = -0.03 (less elastic) prices are ~10% higher; at eps = -0.06, ~10% lower.</p>
+
+  <p><b style="color:var(--ink)">Drawable-stock runway.</b> Uses the emergency-accessible buffer above safe minimum operating levels (~1.1 bn bbl at crisis start, per OPEC MOMR analysis and IEA). Runway shown at constant May draw rate (3.4 Mbd) for transparency - actual draws moderate as demand destruction deepens, which extends the runway but raises price instead. Excludes stranded oil-on-water (building, not accessible). Decision-support visual, not investment advice.</p>
+</div>
+
+</div>
+</div><!-- /wrap -->
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const D = {
+  months:  ['Mar','Apr','May','Jun*','Jul*','Aug*'],
+  gulf:    [11.0, 14.2, 14.0, 14.0, 13.8, 13.6],
+  bypass:  [2.0,  3.0,  3.2,  3.4,  3.6,  3.8],
+  nonopec: [1.6,  2.1,  2.3,  2.5,  2.7,  2.9],
+  netloss: [7.4,  9.1,  8.5,  8.1,  7.5,  6.9],
+  refcut:  [3.2,  5.2,  5.1,  5.3,  5.4,  5.5],
+  cn_rc:   [1.0,  2.3,  2.7,  2.8,  2.9,  3.0],
+  row_rc:  [2.2,  2.9,  2.4,  2.5,  2.5,  2.5],
+  invdraw: [4.2,  3.9,  3.4,  2.8,  2.1,  1.4],
+  us_spr:  [1.2,  1.4,  1.3,  1.1,  0.8,  0.5],
+  eu_spr:  [0.8,  1.0,  0.9,  0.8,  0.6,  0.4],
+  oecd_c:  [2.2,  2.5,  2.2,  2.1,  1.9,  1.7],
+  china:   [0.4,  0.6,  0.7,  0.7,  0.7,  0.7],
+  other:   [0.0,  0.2,  0.3,  0.3,  0.3,  0.3],
+  onwater: [-0.4,-1.8, -2.0, -2.2, -2.2, -2.2],
+  cn_drop: [2.5,  5.0,  6.0,  6.2,  6.3,  6.4],
+  cn_stk:  [0.5,  1.2,  1.5,  1.6,  1.6,  1.7],
+  cn_res:  [1.0,  1.5,  1.8,  1.8,  1.8,  1.7],
+  mandated:[0.4,  0.8,  1.1,  1.4,  1.6,  1.8],
+  price:   [0.3,  0.6,  0.9,  1.5,  2.1,  2.8],
+  petro:   [0.6,  1.5,  1.6,  1.6,  1.5,  1.4],
+  suppr:   [-0.3,-0.5, -0.6, -0.6, -0.5, -0.4],
+  felt:    [1.0,  2.4,  3.0,  3.9,  4.7,  5.6],
+  brent:   [92,   120,  105,  110,  115,  123],
+  brent_cl:[92,   120,  105,  130,  153,  163],
+  brent_lo:[88,   114,  100,  99,   102,  107],
+  brent_hi:[96,   127,  111,  122,  130,  143],
+  st_oecd: [332,  257,  189,  126,  67,   14],
+  st_us:   [203,  161,  121,  88,   63,   48],
+  st_eu:   [125,  95,   67,   43,   24,   12],
+  st_cn:   [168,  150,  128,  107,  85,   63],
+  st_oth:  [60,   54,   45,   36,   27,   18],
+  draw_tot:[888,  717,  550,  400,  266,  155],
+  runway:  [8.6,  6.9,  5.3,  3.9,  2.6,  1.5],
+};
+const GLOBAL_DEMAND = 104, SEABORNE = 42, NOW = 2, PROJ = 3;
+let curMi = NOW, curDenom = 'demand';
+
+// ============================================================
+// SVG HELPERS
+// ============================================================
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, text) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k,v] of Object.entries(attrs||{})) e.setAttribute(k, v);
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+function line(svg, x1,y1,x2,y2, attrs) {
+  svg.appendChild(el('line', {x1,y1,x2,y2, ...attrs}));
+}
+function rect(svg, x,y,w,h, attrs) {
+  if (h < 0.5) h = 0.5;
+  svg.appendChild(el('rect', {x,y,width:Math.max(0.5,w),height:h,rx:'1', ...attrs}));
+}
+function text(svg, x,y,txt, attrs) {
+  svg.appendChild(el('text', {x,y, ...attrs}, txt));
+}
+function path(svg, d, attrs) {
+  svg.appendChild(el('path', {d, ...attrs}));
+}
+function circle(svg, cx,cy,r, attrs) {
+  svg.appendChild(el('circle', {cx,cy,r, ...attrs}));
+}
+
+// ============================================================
+// TOOLTIP
+// ============================================================
+function showTip(tipEl, svgWrapEl, colorHex, titleTxt, rows, total, totalLabel, note, extraSections) {
+  // extraSections: [{label, unit, rows: [{l,v,c}]}] - rendered below divider with own header/unit
+  const rowHtml = (rList, unitLabel) => rList.map(r => `
+    <div class="tooltip-row">
+      <span style="display:flex;align-items:center">
+        ${r.c ? `<span class="tooltip-row-swatch" style="background:${r.c}"></span>` : ''}
+        <span>${r.l}</span>
+      </span>
+      <span class="tooltip-val">${r.v >= 0 ? '' : '-'}${Math.abs(r.v).toFixed(1)}${unitLabel ? ' <span style="font-size:10px;color:var(--dim);font-weight:400">'+unitLabel+'</span>' : ''}</span>
+    </div>`).join('');
+  tipEl.style.display = 'block';
+  tipEl.innerHTML = `
+    <div class="tooltip-title" style="border-left:3px solid ${colorHex}; padding-left:8px">
+      ${titleTxt}
+      <button class="tooltip-close" onclick="hideTip(this.closest('.tooltip'))">x</button>
+    </div>
+    ${rows ? rowHtml(rows, '') : ''}
+    ${total != null ? `
+      <div class="tooltip-total">
+        <span>${totalLabel||'Total'}</span>
+        <span style="font-family:'IBM Plex Mono',monospace;color:${colorHex}">${total >= 0 ? '' : '-'}${Math.abs(total).toFixed(1)}</span>
+      </div>` : ''}
+    ${extraSections ? extraSections.map(sec => `
+      <div style="margin-top:9px;padding-top:8px;border-top:1px solid var(--line)">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin-bottom:5px">${sec.label}</div>
+        ${rowHtml(sec.rows, sec.unit)}
+      </div>`).join('') : ''}
+    ${note ? `<div class="tooltip-note">${note}</div>` : ''}
+  `;
+  const overlay = document.createElement('div');
+  overlay.className = 'tooltip-overlay';
+  overlay.onclick = () => { hideTip(tipEl); overlay.remove(); };
+  svgWrapEl.closest('.panel-card').appendChild(overlay);
+}
+function hideTip(tipEl) {
+  tipEl.style.display = 'none';
+  document.querySelectorAll('.tooltip-overlay').forEach(o => o.remove());
+}
+
+// ============================================================
+// WATERFALL
+// ============================================================
+function drawWaterfall() {
+  const svg = document.getElementById('waterfall-svg');
+  const rd  = document.getElementById('waterfall-readout');
+  const tip = document.getElementById('waterfall-tip');
+  svg.innerHTML = '';
+  const W=880, H=510, padL=50, padR=16, padT=30, padB=136;
+  const plotW=W-padL-padR, plotH=H-padT-padB, maxV=15;
+  const y = v => padT + plotH - (v/maxV)*plotH;
+  const pct = v => curDenom==='demand' ? (v/GLOBAL_DEMAND*100).toFixed(1) : (v/SEABORNE*100).toFixed(1);
+  const mi = curMi;
+
+  // grid
+  [0,3,6,9,12,15].forEach(g => {
+    line(svg,padL,y(g),W-padR,y(g),{stroke:'var(--line)'});
+    text(svg,padL-8,y(g)+4,g,{'text-anchor':'end',fill:'var(--dim)','font-size':'11','font-family':'IBM Plex Mono, monospace'});
+  });
+  text(svg,14,padT+plotH/2,'Mbd',{fill:'var(--dim)','font-size':'11','text-anchor':'middle','font-family':'IBM Plex Mono, monospace',transform:`rotate(-90 14 ${padT+plotH/2})`});
+
+  // projection shading
+  const slotW = plotW/7;
+  const projX = padL + slotW*4 - slotW*0.3;
+  rect(svg, projX, padT, W-padR-projX, plotH, {fill:'#fff',opacity:'0.03'});
+  line(svg, projX,padT, projX,padT+plotH, {stroke:'var(--dim)','stroke-dasharray':'2 3',opacity:'0.4'});
+  text(svg, projX+4, padT+11, 'closed-case ->', {fill:'var(--dim)','font-size':'9','font-style':'italic','font-family':'IBM Plex Sans, sans-serif'});
+
+  // build waterfall columns
+  const cols = [
+    {key:'gulf',   label:'Gulf\nexport loss', color:'var(--gulf)',   val: D.gulf[mi],   kind:'up'},
+    {key:'bypass', label:'Bypass',            color:'var(--bypass)', val:-D.bypass[mi], kind:'down'},
+    {key:'nonopec',label:'Non-OPEC\nadds',    color:'var(--nonopec)',val:-D.nonopec[mi],kind:'down'},
+    {key:'netloss',label:'Net crude\nloss',   color:'var(--gulf)',   kind:'marker'},
+    {key:'refcut', label:'State-directed\ndemand cut',     color:'var(--cn-run)', kind:'stack',
+      segs:[{k:'cn_rc',v:D.cn_rc[mi],c:'var(--cn-run)',l:'China state-directed cuts'},
+            {k:'row_rc',v:D.row_rc[mi],c:'var(--row-run)',l:'RoW run-cuts'}]},
+    {key:'inv',    label:'Inventory\ndraw',   color:'var(--us-spr)', kind:'stack',
+      segs:[{k:'us_spr',v:D.us_spr[mi],c:'var(--us-spr)',l:'US SPR'},
+            {k:'eu_spr',v:D.eu_spr[mi],c:'var(--eu-spr)',l:'Europe SPR/products'},
+            {k:'oecd_c',v:D.oecd_c[mi],c:'var(--oecd-c)',l:'OECD commercial'},
+            {k:'china',v:D.china[mi],c:'var(--china-inv)',l:'China (visible)'},
+            {k:'other',v:D.other[mi],c:'var(--other)',l:'Other non-OECD'},
+            {k:'onwater',v:D.onwater[mi],c:'var(--onwater)',l:'Oil-on-water (NOT a draw)'}]},
+    {key:'resid',  label:'Balanced', color:'var(--net)', kind:'marker0'},
+  ];
+
+  const bw = slotW*0.6;
+  let run = 0;
+  const placed = cols.map((c,i) => {
+    const x = padL + slotW*i + (slotW-bw)/2;
+    if (c.kind==='up')      { const o={...c,x,top:c.val,bot:0}; run=c.val; return o; }
+    if (c.kind==='marker')  { return {...c,x,top:run,isMarker:true}; }
+    if (c.kind==='marker0') { return {...c,x,top:0,isMarker:true,zero:true}; }
+    if (c.kind==='down')    { const top=run,bot=run+c.val; run=bot; return {...c,x,top,bot}; }
+    if (c.kind==='stack') {
+      const tot = c.segs.reduce((a,s)=>a+s.v,0);
+      const top=run, bot=run-tot;
+      let cur=run;
+      const segs=c.segs.map(s=>{const st=cur,sb=cur-s.v;cur=sb;return{...s,st,sb};});
+      run=bot; return {...c,x,top,bot,segs,tot};
+    }
+    return {...c,x};
+  });
+
+  // connectors
+  placed.forEach((c,i)=>{
+    if(i===0) return;
+    const p=placed[i-1], py=p.isMarker?y(p.top):y(p.bot);
+    line(svg,p.x+bw,py,c.x,py,{stroke:'var(--dim)','stroke-dasharray':'3 3',opacity:'0.4'});
+  });
+
+  // bars
+  placed.forEach(c=>{
+    if(c.isMarker){
+      const yt=c.zero?y(0):y(c.top);
+      const barEl=el('g',{style:'cursor:pointer'});
+      if(!c.zero){
+        const bg=el('rect',{x:c.x,y:yt,width:bw,height:y(0)-yt,fill:c.color,opacity:'0.16',rx:'1'});
+        barEl.appendChild(bg);
+      }
+      const br=el('rect',{x:c.x,y:c.zero?y(0)-2:yt,width:bw,height:c.zero?3:y(0)-yt,fill:'none',stroke:c.color,'stroke-width':'2',rx:'1'});
+      barEl.appendChild(br);
+      const tv=el('text',{x:c.x+bw/2,y:(c.zero?y(0):yt)-9,fill:c.color,'font-size':'14','text-anchor':'middle','font-family':'IBM Plex Mono, monospace','font-weight':'700'},c.zero?'~0':c.top.toFixed(1));
+      barEl.appendChild(tv);
+      // tooltip data
+      const SINGLE_NOTES = {
+        netloss:{color:'var(--gulf)',title:'Net crude supply loss',rows:[{l:'Gulf export loss',v:D.gulf[mi]},{l:'Bypass',v:-D.bypass[mi]},{l:'Non-OPEC adds',v:-D.nonopec[mi]}],total:D.netloss[mi],totalLabel:'Net crude loss',note:pct(D.netloss[mi])+'% of global '+(curDenom==='demand'?'demand':'seaborne')+'. Cleared by refinery cut + inventory draw.'},
+        resid:{color:'var(--net)',title:'Balanced book',rows:[{l:'Net crude loss',v:D.netloss[mi]},{l:'Refinery cut',v:-D.refcut[mi]},{l:'Inventory draw',v:-D.invdraw[mi]}],total:+(D.netloss[mi]-D.refcut[mi]-D.invdraw[mi]).toFixed(1),totalLabel:'Residual',note:'Balances to ~zero.'},
+      };
+      const nd=SINGLE_NOTES[c.key];
+      if(nd){ barEl.onclick=()=>showTip(tip,svg.parentElement,nd.color,nd.title,nd.rows,nd.total,nd.totalLabel,nd.note); }
+      svg.appendChild(barEl);
+      return;
+    }
+    if(c.segs){
+      const grp=el('g',{style:'cursor:pointer'});
+      c.segs.forEach(s=>{
+        const yt=y(Math.max(s.st,s.sb)), hgt=Math.abs(y(s.sb)-y(s.st));
+        const isDrag=s.v<0;
+        grp.appendChild(el('rect',{x:c.x,y:yt,width:bw,height:hgt,fill:s.c,opacity:'0.85',rx:'0.5',...(isDrag?{'stroke':'var(--ink)','stroke-dasharray':'2 2','stroke-width':'1'}:{})}));
+      });
+      const lv=c.key==='inv'?D.invdraw[mi]:D.refcut[mi];
+      grp.appendChild(el('text',{x:c.x+bw/2,y:y(c.top)-9,fill:c.color,'font-size':'13','text-anchor':'middle','font-family':'IBM Plex Mono, monospace','font-weight':'600'},'-'+lv.toFixed(1)));
+      if(c.key==='refcut'){
+        grp.onclick=()=>showTip(tip,svg.parentElement,'var(--cn-run)','State-directed demand cut',
+          [{l:'China state-directed cuts',v:-D.cn_rc[mi],c:'var(--cn-run)'},{l:'Rest-of-world demand cuts',v:-D.row_rc[mi],c:'var(--row-run)'}],
+          -D.refcut[mi],'Refinery cut','State-directed and structural. China slice ties to Panel 2.');
+      } else {
+        grp.onclick=()=>showTip(tip,svg.parentElement,'var(--us-spr)','Inventory draw',
+          [{l:'US SPR',v:-D.us_spr[mi],c:'var(--us-spr)'},{l:'Europe SPR/products',v:-D.eu_spr[mi],c:'var(--eu-spr)'},
+           {l:'OECD commercial',v:-D.oecd_c[mi],c:'var(--oecd-c)'},{l:'China (visible)',v:-D.china[mi],c:'var(--china-inv)'},
+           {l:'Other non-OECD',v:-D.other[mi],c:'var(--other)'},{l:'Oil-on-water (NOT a draw)',v:-D.onwater[mi],c:'var(--onwater)'}],
+          -D.invdraw[mi],'Net draw',
+          '~'+D.draw_tot[mi]+' Mb of emergency-accessible stock remains (excludes oil-on-water which is BUILDING - stranded Gulf tankers not yet delivering). Runway ~'+D.runway[mi]+' months at May draw rate.');
+      }
+      svg.appendChild(grp);
+      return;
+    }
+    const yt=y(Math.max(c.top,c.bot)), hgt=Math.abs(y(c.bot)-y(c.top));
+    const g=el('g',{style:'cursor:pointer'});
+    g.appendChild(el('rect',{x:c.x,y:yt,width:bw,height:hgt,fill:c.color,opacity:'0.85',rx:'1'}));
+    const barLabelColor=(c.key==='gulf'||c.key==='bypass'||c.key==='nonopec')?c.color:'var(--ink)';
+g.appendChild(el('text',{x:c.x+bw/2,y:yt-8,fill:barLabelColor,'font-size':'13','text-anchor':'middle','font-family':'IBM Plex Mono, monospace','font-weight':'600'},(c.val<0?'-':'')+Math.abs(c.val).toFixed(1)));
+    const SINGLE_NOTES2 = {
+        gulf:{color:'var(--gulf)',title:'Gulf crude export loss',rows:[{l:'Gross Gulf export loss',v:D.gulf[mi],c:'var(--gulf)'}],total:D.gulf[mi],totalLabel:'Gross loss (Mbd)',note:'Hormuz exports fell to ~1.9 Mbd. Net loss is below the 20 Mbd headline - some volume is intra-Gulf or pipeline-served.'},
+        bypass:{color:'var(--bypass)',title:'Bypass routes (structural)',rows:[{l:'Fujairah terminal',v:1.6,c:'var(--bypass)'},{l:'Saudi Red Sea ports',v:0.8,c:'var(--bypass)'},{l:'Iraq-Turkiye pipeline',v:0.4,c:'var(--bypass)'},{l:'Iran Jask terminal',v:0.2,c:'var(--bypass)'}],total:-D.bypass[mi],totalLabel:'Total bypass (Mbd)',note:'Incremental deliverable beyond pre-war throughput. Durable. Saudi/UAE spare (~4-5 Mbd) EXCLUDED - stranded behind the strait.'},
+        nonopec:{color:'var(--nonopec)',title:'Non-OPEC additions (structural)',rows:[{l:'US (net crude exporter)',v:0.9,c:'var(--nonopec)'},{l:'Brazil / Guyana / Norway',v:0.8,c:'var(--nonopec)'},{l:'Other non-OPEC',v:0.6,c:'var(--nonopec)'}],total:-D.nonopec[mi],totalLabel:'Total additions (Mbd)',note:'US product net exports +6 Mbd (+20% y/y). These persist regardless of when Hormuz reopens.'},
+      };
+    const nd=SINGLE_NOTES2[c.key];
+    if(nd) g.onclick=()=>showTip(tip,svg.parentElement,nd.color,nd.title,nd.rows,nd.total,nd.totalLabel,nd.note);
+    svg.appendChild(g);
+  });
+
+  // category bracket bands below x labels
+  const bracketY=H-padB+54, bLabelY=H-padB+68;
+  const cats=[
+    {x1:placed[0].x, x2:placed[0].x+bw, color:'var(--gulf)', label:'Supply shock'},
+    {x1:placed[1].x, x2:placed[2].x+bw, color:'var(--bypass)', label:'Structural offsets (persist)'},
+    {x1:placed[4].x, x2:placed[4].x+bw, color:'var(--cn-run)', label:'Demand cut (state-directed)'},
+    {x1:placed[5].x, x2:placed[5].x+bw, color:'var(--us-spr)', label:'Inventory (temporary)'},
+  ];
+  cats.forEach(cat=>{
+    const mx=(cat.x1+cat.x2)/2;
+    line(svg,cat.x1+2,bracketY,cat.x2-2,bracketY,{stroke:cat.color,'stroke-width':'1.5',opacity:'0.6'});
+    line(svg,cat.x1+2,bracketY,cat.x1+2,bracketY-5,{stroke:cat.color,'stroke-width':'1.5',opacity:'0.6'});
+    line(svg,cat.x2-2,bracketY,cat.x2-2,bracketY-5,{stroke:cat.color,'stroke-width':'1.5',opacity:'0.6'});
+    // split label into two lines if it contains a space after the first word
+    const catWords=cat.label.split(' ');
+    const catLine1=catWords.slice(0,2).join(' ');
+    const catLine2=catWords.slice(2).join(' ');
+    const catT=el('text',{x:mx,y:bLabelY-(catLine2?6:0),'text-anchor':'middle',fill:cat.color,'font-size':'9.5','font-family':'IBM Plex Mono, monospace','font-style':'italic'},null);
+    catT.appendChild(el('tspan',{x:mx,dy:'0'},catLine1));
+    if(catLine2) catT.appendChild(el('tspan',{x:mx,dy:'11'},catLine2));
+    svg.appendChild(catT);
+  });
+
+  // x labels
+  placed.forEach(c=>{
+    const lines=c.label.split('\n');
+    const xLabelColor=c.isMarker?c.color:(c.key==='gulf'?'var(--gulf)':c.key==='bypass'?'var(--bypass)':c.key==='nonopec'?'var(--nonopec)':'var(--dim)');
+    const t=el('text',{x:c.x+bw/2,y:H-padB+22,fill:xLabelColor,'font-size':'11','text-anchor':'middle','font-family':'IBM Plex Sans, sans-serif','font-weight':c.isMarker?'700':'500'});
+    lines.forEach((l,li)=>{const ts=el('tspan',{x:c.x+bw/2,dy:li===0?'0':'12'},l);t.appendChild(ts);});
+    svg.appendChild(t);
+  });
+
+  rd.innerHTML = 'Net crude loss <b style="color:var(--ink)">' + D.netloss[mi].toFixed(1) + ' Mbd</b> = <b style="color:var(--gulf)">' + pct(D.netloss[mi]) + '%</b> of ' + (curDenom==='demand'?'global demand':'seaborne trade') + (mi>=PROJ?' | projection (strait closed)':'') + ' | tap any bar';
+}
+
+// ============================================================
+// STACKED MONTHS (China + Demand share same function)
+// ============================================================
+function drawStacked(svgId, tipId, parts, totals, maxV, priceLine) {
+  const svg = document.getElementById(svgId);
+  const tip = document.getElementById(tipId);
+  svg.innerHTML = '';
+  const W=880, H=priceLine?520:380, padL=50, padR=priceLine?54:16, padT=30, padB=80, n=6;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const slot=plotW/n, bw=slot*0.5;
+  const xc = i => padL+slot*i+bw/2+slot*0.25;
+
+  // Left axis: 0-maxV Mbd, standard (high value = high on chart = low y)
+  const yL = v => padT+plotH-(v/maxV)*plotH;
+  // Right axis: price, same direction (high price = high on chart = low y)
+  // Compressed to top 45% so price line floats above bars
+  // pHigh maps to padT (top), pLow maps to padT+plotH*0.45 (bottom of price zone)
+  const pHigh=170, pLow=85, pFrac=0.45;
+  const yP = v => padT + (pHigh-v)/(pHigh-pLow)*(plotH*pFrac);
+
+  // Left Y axis grid lines and labels
+  [0,2,4,6,8,10].filter(g=>g<=maxV).forEach(g=>{
+    line(svg,padL,yL(g),W-padR,yL(g),{stroke:'var(--line)',opacity:g===0?'1':'0.6'});
+    text(svg,padL-7,yL(g)+4,g,{'text-anchor':'end',fill:'var(--dim)','font-size':'11','font-family':'IBM Plex Mono, monospace'});
+  });
+  // Left axis label
+  const midY = padT+plotH/2;
+  text(svg,14,midY,'Mbd',{fill:'var(--dim)','font-size':'11','text-anchor':'middle','font-family':'IBM Plex Mono, monospace',transform:`rotate(-90 14 ${midY})`});
+
+  // Right Y axis tick labels (price zone)
+  if(priceLine){
+    [100,120,140,160].forEach(g=>{
+      text(svg,W-padR+5,yP(g)+4,'$'+g,{'text-anchor':'start',fill:'var(--brent-c)','font-size':'10','font-family':'IBM Plex Mono, monospace',opacity:'0.85'});
+    });
+    // Right axis label
+    const rMid = padT+(plotH*pFrac)/2;
+    text(svg,W-padR+38,rMid,'$/bbl',{fill:'var(--brent-c)','font-size':'10','text-anchor':'middle','font-family':'IBM Plex Mono, monospace',transform:`rotate(90 ${W-padR+38} ${rMid})`,opacity:'0.7'});
+  }
+
+  // Projection shading
+  const projX = padL+slot*PROJ-slot*0.25;
+  rect(svg,projX,padT,W-padR-projX,plotH,{fill:'#fff',opacity:'0.025'});
+  line(svg,projX,padT,projX,padT+plotH,{stroke:'var(--dim)','stroke-dasharray':'2 3',opacity:'0.4'});
+  text(svg,projX+4,padT+11,'closed-case ->',{fill:'var(--dim)','font-size':'9','font-style':'italic','font-family':'IBM Plex Sans, sans-serif'});
+
+  // Bars
+  for(let i=0;i<n;i++){
+    let cursor=0;
+    const colVals=parts.map(p=>({l:p.note[0],v:D[p.k][i],c:p.c}));
+    const colTotal=totals[i];
+    const colG=el('g',{style:'cursor:pointer'});
+    const ci2=i;
+    const priceSec=priceLine ? [{
+      label:'Brent crude - right axis',
+      unit:'$/bbl',
+      rows:[
+        {l:'Market price (deal expected)',v:D.brent[ci2],c:'var(--brent-c)'},
+        {l:'No-deal path (closed)',v:(D.brent_cl&&D.brent_cl[ci2])||D.brent[ci2],c:'#e05050'}
+      ]
+    }] : null;
+    colG.onclick=(function(ci,cv,ct,fp,ps){ return ()=>showTip(tip,svg.parentElement,fp.c,D.months[ci]+' demand destruction',cv,ct,'Total felt demand (Mbd)',null,ps); })(i,colVals,colTotal,parts[0],priceSec);
+    parts.forEach(p=>{
+      const v=D[p.k][i], top=cursor+v, yt=yL(top), hgt=yL(cursor)-yL(top);
+      cursor=top;
+      const r=el('rect',{x:padL+slot*i+(slot-bw)/2,y:yt,width:bw,height:Math.max(1,hgt),fill:p.c,opacity:'0.9',rx:'0.5'});
+      colG.appendChild(r);
+    });
+    svg.appendChild(colG);
+    // Suppression dash
+    if(priceLine && D.suppr){
+      const sy=yL(cursor+D.suppr[i]);
+      const dashEl=el('line',{x1:padL+slot*i+(slot-bw)/2,y1:sy,x2:padL+slot*i+(slot-bw)/2+bw,y2:sy,stroke:'var(--suppr)','stroke-width':'3','stroke-dasharray':'4 2',style:'cursor:pointer'});
+      (function(sv){ dashEl.onclick=()=>showTip(tip,svg.parentElement,'var(--suppr)','Subsidy & price-cap suppression',[{l:'Demand shielded from price',v:Math.abs(sv),c:'var(--suppr)'}],Math.abs(sv),'Suppressed (Mbd)','Price caps: South Korea, Thailand, Philippines, Slovenia. Direct subsidies: Philippines, Thailand, Malaysia, Egypt, Sri Lanka. Deferred adjustment arrives as fiscal cost or sudden demand spike when removed.'); })(D.suppr[i]);
+      svg.appendChild(dashEl);
+    }
+    // Bar total above bar
+    text(svg,xc(i),yL(cursor)-6,totals[i].toFixed(1),{'text-anchor':'middle',fill:'var(--ink)','font-size':'11','font-family':'IBM Plex Mono, monospace','font-weight':'600'});
+    // Month label
+    text(svg,xc(i),H-padB+22,D.months[i],{'text-anchor':'middle',fill:i===NOW?'var(--ink)':'var(--dim)','font-size':'11.5','font-family':'IBM Plex Mono, monospace','font-weight':i===NOW?'700':'400'});
+  }
+
+  // Price lines drawn after bars (sit on top visually)
+  if(priceLine){
+    // Base price path
+    let d='';
+    D.brent.forEach((b,i)=>{ d+=(i===0?'M':'L')+' '+xc(i)+' '+yP(b)+' '; });
+    path(svg,d.trim(),{fill:'none',stroke:'var(--brent-c)','stroke-width':'3'});
+    // Wide transparent hit area for clicking the line
+    const bHit=el('path',{d:d.trim(),fill:'none',stroke:'transparent','stroke-width':'24',style:'cursor:pointer'});
+    bHit.onclick=(function(bv){ return ()=>showTip(tip,svg.parentElement,'var(--brent-c)','Brent: market path (deal expected)',D.months.map((m,i)=>({l:m+(i>=PROJ?' proj':''),v:bv[i],c:'var(--brent-c)'})),null,'Market price ($/bbl)','Current market price assumes a deal arrives before inventories hit a critical floor.'); })(D.brent.slice());
+    svg.appendChild(bHit);
+    // Dots and per-dot labels + click
+    D.brent.forEach((b,i)=>{
+      circle(svg,xc(i),yP(b),5,{fill:'var(--bg)',stroke:'var(--brent-c)','stroke-width':'2.5',style:'cursor:pointer'});
+      text(svg,xc(i),yP(b)-12,'$'+b,{'text-anchor':'middle',fill:'var(--brent-c)','font-size':'10','font-family':'IBM Plex Mono, monospace','font-weight':'700'});
+      // Clickable dot area
+      const dotHit=el('circle',{cx:xc(i),cy:yP(b),r:'12',fill:'transparent',style:'cursor:pointer'});
+      (function(bi,bval){ dotHit.onclick=()=>showTip(tip,svg.parentElement,'var(--brent-c)','Brent '+D.months[bi]+(bi>=PROJ?' (proj)':''),[{l:'Market price',v:bval,c:'var(--brent-c)'},{l:'No-deal price',v:(D.brent_cl&&D.brent_cl[bi])||bval,c:'#e05050'}],bval,'Market price ($/bbl)','Current market price embeds a deal-probability discount. No-deal path is higher.'); })(i,b);
+      svg.appendChild(dotHit);
+    });
+    // Closed-case dashed line
+    if(D.brent_cl){
+      let dc='';
+      D.brent_cl.forEach((b,i)=>{ if(i>=PROJ){ dc+=(i===PROJ?'M':'L')+' '+xc(i)+' '+yP(b)+' '; } });
+      if(dc){
+        path(svg,dc.trim(),{fill:'none',stroke:'#e05050','stroke-width':'2','stroke-dasharray':'5 3'});
+        const cHit=el('path',{d:dc,fill:'none',stroke:'transparent','stroke-width':'24',style:'cursor:pointer'});
+        cHit.onclick=(function(cv){ return ()=>showTip(tip,svg.parentElement,'#e05050','Brent: no-deal path (strait closed)',D.months.filter((_,i)=>i>=PROJ).map((m,i)=>({l:m+' proj',v:cv[PROJ+i],c:'#e05050'})),null,'No-deal price ($/bbl)','If talks fail: risk premium rises, state-directed relief exhausts. Goldman/JPM range $130-163 by Aug.'); })(D.brent_cl.slice());
+        svg.appendChild(cHit);
+        D.brent_cl.forEach((b,i)=>{ if(i>=PROJ){
+          circle(svg,xc(i),yP(b),4,{fill:'var(--bg)',stroke:'#e05050','stroke-width':'2',style:'cursor:pointer'});
+          text(svg,xc(i),yP(b)+16,'$'+b,{'text-anchor':'middle',fill:'#e05050','font-size':'9.5','font-family':'IBM Plex Mono, monospace'});
+          const cdHit=el('circle',{cx:xc(i),cy:yP(b),r:'12',fill:'transparent',style:'cursor:pointer'});
+          (function(bi,bval){ cdHit.onclick=()=>showTip(tip,svg.parentElement,'#e05050','Brent closed-case '+D.months[bi],[{l:'No-deal price',v:bval,c:'#e05050'},{l:'Market price',v:D.brent[bi],c:'var(--brent-c)'}],bval,'No-deal price ($/bbl)','If talks fail: risk premium rises, state-directed relief exhausts.'); })(i,b);
+          svg.appendChild(cdHit);
+        }});
+      }
+    }
+  }
+}
+// ============================================================
+// RUNWAY
+// ============================================================
+function drawRunway(){
+  const svg=document.getElementById('runway-svg');
+  const tip=document.getElementById('runway-tip');
+  svg.innerHTML='';
+  const W=880,H=340,padL=50,padR=54,padT=24,padB=60,n=6;
+  const plotW=W-padL-padR,plotH=H-padT-padB;
+  const maxMb=900,maxMo=9;
+  const x=i=>padL+(i/(n-1))*plotW;
+  const yMb=v=>padT+plotH-(v/maxMb)*plotH;
+  const yMo=v=>padT+plotH-(v/maxMo)*plotH;
+  const slot4=plotW/n;
+  const barW=slot4*0.45;
+  const bx=i=>padL+slot4*i+(slot4-barW)/2;
+
+  [0,300,600,900].forEach(g=>{
+    line(svg,padL,yMb(g),W-padR,yMb(g),{stroke:'var(--line)'});
+    text(svg,padL-7,yMb(g)+4,g,{'text-anchor':'end',fill:'var(--dim)','font-size':'10','font-family':'IBM Plex Mono, monospace'});
+  });
+  [0,3,6,9].forEach(g=>text(svg,W-padR-4,yMo(g)+4,g+'mo',{'font-size':'10',fill:'var(--runway-c)','font-family':'IBM Plex Mono, monospace','text-anchor':'end',opacity:'0.9'}));
+  text(svg,14,padT+plotH/2,'Mb drawable',{fill:'var(--dim)','font-size':'10','text-anchor':'middle','font-family':'IBM Plex Mono, monospace',transform:`rotate(-90 14 ${padT+plotH/2})`});
+
+  // projection
+  const projX=bx(PROJ)-6;
+  rect(svg,projX,padT,W-padR-projX,plotH,{fill:'#fff',opacity:'0.025'});
+  line(svg,projX,padT,projX,padT+plotH,{stroke:'var(--dim)','stroke-dasharray':'2 3',opacity:'0.4'});
+  text(svg,projX+4,padT+11,'closed-case ->',{fill:'var(--dim)','font-size':'9','font-style':'italic','font-family':'IBM Plex Sans, sans-serif'});
+
+  const srcs=[
+    {k:'st_oecd',c:'var(--oecd-c)',l:'OECD commercial',note:'Largest drawable pool; depletes first.'},
+    {k:'st_us',  c:'var(--us-spr)', l:'US SPR',         note:'172 Mb committed; ~1.4 Mbd rate.'},
+    {k:'st_eu',  c:'var(--eu-spr)', l:'Europe SPR/products', note:'~63% refined products; thin jet stocks the binding constraint.'},
+    {k:'st_cn',  c:'var(--china-inv)',l:'China (visible)',note:'Drawing slowly; large total but mostly opaque.'},
+    {k:'st_oth', c:'var(--other)',  l:'Other non-OECD', note:'India and others; small drawable buffer.'},
+  ];
+
+  for(let i=0;i<n;i++){
+    let cursor=0;
+    const rColVals=srcs.map(src=>({l:src.l,v:D[src.k][i],c:src.c}));
+    const rColTotal=D.draw_tot[i];
+    const rColG=el('g',{style:'cursor:pointer'});
+    const runwaySec=[{
+      label:'Cover at May draw rate (3.4 Mbd)',
+      unit:'months',
+      rows:[{l:'Months of runway remaining',v:D.runway[i],c:'var(--runway-c)'}]
+    }];
+    rColG.onclick=(function(ci,cv,ct,rs){ return ()=>showTip(tip,svg.parentElement,'var(--us-spr)',D.months[ci]+' drawable stock by source',cv,ct,'Total drawable (Mb)','Excludes oil-on-water (stranded, building - not drawable).',rs); })(i,rColVals,rColTotal,runwaySec);
+    srcs.forEach(s=>{
+      const v=D[s.k][i], top=cursor+v, yt=yMb(top), hgt=yMb(cursor)-yMb(top);
+      cursor=top;
+      const r=el('rect',{x:bx(i),y:yt,width:barW,height:Math.max(1,hgt),fill:s.c,opacity:'0.88',rx:'0.5'});
+      rColG.appendChild(r);
+    });
+    const tot=D.draw_tot[i];
+    svg.appendChild(rColG);
+    text(svg,bx(i)+barW/2,yMb(cursor)-6,tot,{'text-anchor':'middle',fill:'var(--dim)','font-size':'10','font-family':'IBM Plex Mono, monospace'});
+    text(svg,bx(i)+barW/2,H-padB+28,D.months[i],{'text-anchor':'middle',fill:i===NOW?'var(--ink)':'var(--dim)','font-size':'11','font-family':'IBM Plex Mono, monospace','font-weight':i===NOW?'700':'400'});
+  }
+
+  // runway line
+  let rl='';
+  D.runway.forEach((r,i)=>{ rl+=(i===0?'M':'L')+' '+(bx(i)+barW/2)+' '+yMo(r)+' '; });
+  path(svg,rl.trim(),{fill:'none',stroke:'var(--runway-c)','stroke-width':'3'});
+  const rwHit=el('path',{d:rl.trim(),fill:'none',stroke:'transparent','stroke-width':'20',style:'cursor:pointer'});
+  rwHit.onclick=(function(rv){ return ()=>showTip(tip,svg.parentElement,'var(--runway-c)','Months of cover at May draw rate (3.4 Mbd)',D.months.map((m,i)=>({l:m+(i>=PROJ?' proj':''),v:rv[i],c:'var(--runway-c)'})),null,null,'Remaining drawable stock / (3.4 Mbd x 30.4 days). Excludes oil-on-water. Actual runway extends if draws moderate - but that requires price to rise to destroy demand instead.'); })(D.runway.slice());
+  svg.appendChild(rwHit);
+  D.runway.forEach((r,i)=>{
+    circle(svg,bx(i)+barW/2,yMo(r),4,{fill:'var(--bg)',stroke:'var(--runway-c)','stroke-width':'2.5'});
+    text(svg,bx(i)+barW/2,yMo(r)+16,r+'mo',{'text-anchor':'middle',fill:'var(--runway-c)','font-size':'10.5','font-family':'IBM Plex Mono, monospace','font-weight':'700'});
+  });
+}
+
+// ============================================================
+// WIRE UP CONTROLS & INITIAL DRAW
+// ============================================================
+const chinaParts=[
+  {k:'cn_rc',c:'var(--cn-rc)',note:['China refinery run-cuts','Observable via run data - ~20% state-directed run-cuts. Same number as inside Panel 1 refinery-cut bar.']},
+  {k:'cn_stk',c:'var(--cn-st)',note:['China commercial stock draws','Observable via implied balance - drawing reserves built in 2025.']},
+  {k:'cn_res',c:'var(--cn-rs)',note:['Lower apparent demand / unobserved destock','Residual: imports fell more than run-cuts + stock draws explain. Could be genuine consumption decline or previously-built stocks. NOT directly observable - the contested piece, shown as interpretation.']},
+];
+const demandParts=[
+  {k:'petro',c:'var(--petro)',note:['Petrochemical destruction','Fastest-responding sector. Naphtha/LPG/ethane -1.5 Mbd in 2Q26.']},
+  {k:'mandated',c:'var(--mandated)',note:['Top-down mandated rationing','Policy fiat, price-insensitive: WFH mandates, license-plate rationing, government vehicle limits.']},
+  {k:'price',c:'var(--price-c)',note:['Price-driven rationing','Market mechanism: retail price pass-through, OECD-led. Rises with Brent.']},
+];
+
+document.getElementById('month-btns').addEventListener('click', e=>{
+  const btn=e.target.closest('[data-mi]'); if(!btn) return;
+  curMi=+btn.dataset.mi;
+  document.querySelectorAll('#month-btns .btn').forEach(b=>b.classList.toggle('active',+b.dataset.mi===curMi));
+  drawWaterfall();
+});
+document.getElementById('denom-btns').addEventListener('click', e=>{
+  const btn=e.target.closest('[data-d]'); if(!btn) return;
+  curDenom=btn.dataset.d;
+  document.querySelectorAll('#denom-btns .btn').forEach(b=>b.classList.toggle('active',b.dataset.d===curDenom));
+  drawWaterfall();
+});
+
+drawWaterfall();
+drawStacked('china-svg','china-tip', chinaParts, D.cn_drop, 7.0, false);
+drawStacked('demand-svg','demand-tip', demandParts, D.felt, 10, true);
+drawRunway();
+
+window.addEventListener('resize', ()=>{
+  drawWaterfall();
+  drawStacked('china-svg','china-tip',chinaParts,D.cn_drop,7.0,false);
+  drawStacked('demand-svg','demand-tip',demandParts,D.felt,10,true);
+  drawRunway();
+});
+
+
+
+function mobToggle(panelId) {
+  var panel = document.getElementById(panelId);
+  if (!panel) return;
+  var isOpen = panel.className.indexOf('mob-open') >= 0;
+  var body = panel.querySelector('.mob-body, .mob-critique-body');
+  var arrow = panel.querySelector('.mob-arrow');
+  var hint = panel.querySelector('.mob-label-hint');
+  if (isOpen) {
+    panel.className = panel.className.replace(' mob-open', '');
+    if (body) body.style.display = 'none';
+    if (arrow) { arrow.style.transform = ''; arrow.style.color = ''; }
+    if (hint) hint.textContent = 'tap to expand';
+  } else {
+    panel.className = panel.className + ' mob-open';
+    if (body) body.style.display = 'block';
+    if (arrow) { arrow.style.transform = 'rotate(180deg)'; arrow.style.color = 'var(--gulf)'; }
+    if (hint) hint.textContent = 'tap to collapse';
+  }
+}
+
+function initMobPanels() {
+  var panels = document.querySelectorAll('.mob-panel');
+  for (var i = 0; i < panels.length; i++) {
+    var panel = panels[i];
+    var isOpen = panel.className.indexOf('mob-open') >= 0;
+    var body = panel.querySelector('.mob-body, .mob-critique-body');
+    var arrow = panel.querySelector('.mob-arrow');
+    if (!isOpen) {
+      if (body) body.style.display = 'none';
+    } else {
+      if (arrow) { arrow.style.transform = 'rotate(180deg)'; arrow.style.color = 'var(--gulf)'; }
+    }
+  }
+}
+
+// Run immediately and on load to handle both sync and async rendering
+initMobPanels();
+window.addEventListener('load', initMobPanels);
+
+</script>
+</body>
+</html>
